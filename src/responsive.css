@@ -1,0 +1,133 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * responsive.css
+ *
+ * Mobile + tablet patch layer. Loaded AFTER index.css so these rules win.
+ * The component JSX files are kept exactly as-written for desktop —
+ * everything here is an override scoped to small viewports.
+ *
+ * Targets the issues the responsive-audit flagged:
+ *   PHONE (<640px)
+ *     1. Hero tagline negative margins overlap the logo
+ *     2. Video player aspect (9/16) is taller than viewport
+ *     3. MobileQuickBar gutters too tight
+ *     4. Marquee gaps jitter on small screens
+ *     5. About promise card padding too dense
+ *   TABLET + PHONE (<1024px)
+ *     6. Testimonials/Why Choose Us h-[300vh] sticky has no effect → just
+ *        forces 3× viewport of empty scroll. Disable the long-scroll.
+ *     7. About sticky image height calc trips up on short viewports.
+ *
+ * !important is used liberally because Tailwind utilities are emitted as
+ * single-class rules — these overrides need to outrank them.
+ * ────────────────────────────────────────────────────────────────────── */
+
+
+/* ─── PHONE ─── (max 639px) ─────────────────────────────────────────── */
+@media (max-width: 639px) {
+
+  /* 1. Hero tagline — kill the negative top margin and constrain width
+        so the line never crawls into the logo art. */
+  section#top p[class*="-mt-8"][class*="font-display"] {
+    margin-top: 1rem !important;
+    width: auto !important;
+    max-width: 18rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Hero wordmark — smaller bottom margin on mobile to free up vertical room */
+  section#top h1[class*="ASEEM"] + div,
+  section#top h1[class*="font-display"] {
+    line-height: 0.95 !important;
+  }
+
+  /* 2. Video player on the gallery section — cap the height to 70vh so the
+        portrait video doesn't overflow the screen on phones. */
+  section#gallery figure[class*="aspect-[9/16]"] {
+    aspect-ratio: 4 / 5 !important;
+    max-height: 72vh !important;
+  }
+
+  /* 3. MobileQuickBar — tighter gutters but more padding inside the pill */
+  .lg\:hidden[class*="bottom-5"][class*="mx-3"] {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+  }
+
+  /* 4. Marquee — reduce gap between items so the strip doesn't jitter
+        as much on small screens */
+  section[aria-label="Treatments offered"] > div[ref] > span,
+  section[aria-label="Treatments offered"] .flex > span {
+    gap: 1.5rem !important;
+  }
+
+  /* 5. About promise cards — slightly reduce padding so two cards fit a row */
+  section#about [class*="rounded-3xl"][class*="p-7"] {
+    padding: 1.25rem !important;
+  }
+
+  /* Hero column padding — pull right column up a bit on phones */
+  section#top div[class*="lg:col-span-3"] {
+    margin-top: -1rem !important;
+  }
+
+  /* TopBar — ensure Hindi wordmark never overflows */
+  header div[style*="Devanagari"] {
+    max-width: 60vw !important;
+    overflow-wrap: anywhere;
+  }
+}
+
+
+/* ─── TABLET + PHONE ─── (max 1023px) ──────────────────────────────── */
+@media (max-width: 1023px) {
+
+  /* 6. Why Choose Us section — disable the 300vh scroll-pin mechanic.
+        Below lg, lg:sticky doesn't activate, so h-[300vh] was just
+        burning scroll distance for no effect. */
+  section#why {
+    height: auto !important;
+  }
+  /* The inner sticky wrapper renders as a normal block below lg too */
+  section#why > div[class*="sticky"][class*="h-screen"] {
+    position: static !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    display: block !important;
+  }
+
+  /* Pagination dots — hide the vertical right-edge dots on mobile/tablet
+        (they're already lg:flex but make extra sure) */
+  section#why div[class*="top-1/2"][class*="hidden"] {
+    display: none !important;
+  }
+
+  /* 7. About — kill the calc(100vh-7rem) constraint on tablet so content
+        flows naturally; lg:sticky etc. won't apply anyway. */
+  section#about [class*="lg:h-[calc(100vh-7rem)]"],
+  section#about [class*="lg:min-h-[calc(100vh-7rem)]"] {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* BookingModal — give calendar buttons a tap-friendly 40px on small screens */
+  div[role="dialog"] button[disabled],
+  /* mini calendar day cells via the modal */
+  div[class*="z-[100]"] div[class*="grid-cols-7"] > button {
+    min-height: 40px !important;
+    min-width: 40px !important;
+  }
+}
+
+
+/* ─── SHORT VIEWPORTS ─── (height-driven) ──────────────────────────── */
+@media (max-height: 720px) and (min-width: 1024px) {
+  /* On short laptops, the About sticky panels overflow their min-h.
+     Drop the min-height so content can compact. */
+  section#about [class*="lg:min-h-[calc(100vh-7rem)]"] {
+    min-height: 80vh !important;
+  }
+}

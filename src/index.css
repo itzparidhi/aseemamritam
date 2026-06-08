@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: #FFFFFF;
+  color: #0e1623;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection { background: #2a405c; color: #FFFFFF; }
+
+/* Custom cursor — hide native pointer on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  body, body * { cursor: none !important; }
+  input, textarea, select, [contenteditable] { cursor: text !important; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #e5edf5; }
+::-webkit-scrollbar-thumb { background: #9bb3cf; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #466890; }
+
+@layer components {
+  .container-x {
+    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+  .h-display {
+    @apply font-display tracking-tight font-semibold;
+    font-variation-settings: 'opsz' 144;
+  }
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-medium text-teal-800;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-900 px-6 py-3 text-sm font-semibold text-cream shadow-soft transition hover:bg-teal-950 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-900/20 px-6 py-3 text-sm font-semibold text-teal-900 transition hover:bg-teal-50;
+  }
+
+  /* ───── Glassmorphism — navy theme ───── */
+  .glass {
+    @apply relative backdrop-blur-xl bg-white/65 border border-white/70;
+    box-shadow:
+      0 8px 32px -10px rgba(28, 40, 73, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+  }
+  .glass-tinted {
+    @apply relative backdrop-blur-xl border border-peri-200/50;
+    background: linear-gradient(135deg, rgba(241, 243, 251, 0.6), rgba(255, 255, 255, 0.3));
+    box-shadow:
+      0 8px 32px -10px rgba(28, 40, 73, 0.14),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  }
+  .glass-dark {
+    @apply relative backdrop-blur-xl border border-teal-700/30 text-cream;
+    background: linear-gradient(135deg, rgba(35, 51, 73, 0.82), rgba(14, 22, 35, 0.9));
+    box-shadow:
+      0 10px 36px -12px rgba(14, 22, 35, 0.55),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  }
+  .glass-pill {
+    @apply backdrop-blur-md bg-white/65 border border-white/70;
+    box-shadow: 0 4px 16px -4px rgba(28, 40, 73, 0.1);
+  }
+}
