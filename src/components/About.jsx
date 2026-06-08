@@ -133,7 +133,7 @@ function DirectorHeader() {
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-navy-950">SNS</div>
+        {/* <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-navy-950">SNS</div> */}
         <div className="flex gap-2">
           <SocialDot href="https://www.instagram.com/aseemamritam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" label="Instagram">
             <Instagram size={12} />

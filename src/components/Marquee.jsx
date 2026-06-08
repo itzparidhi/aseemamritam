@@ -30,9 +30,16 @@ export default function Marquee() {
     const track = trackRef.current
     const half = track.scrollWidth / 2
 
+    // Scale duration to viewport width so the perceived speed stays consistent
+    // across screen sizes. Mobile screens are narrow → items spend less wall-time
+    // crossing the viewport, so a fixed 38s feels glacial on a phone but fine on
+    // a 1440px desktop. We aim for ~80 px/s on desktop, ~120 px/s on mobile.
+    const PX_PER_SEC = window.innerWidth < 768 ? 140 : 90
+    const duration = Math.max(8, half / PX_PER_SEC)
+
     const tween = gsap.to(track, {
       x: -half,
-      duration: 38,
+      duration,
       ease: 'none',
       repeat: -1,
     })
@@ -53,9 +60,9 @@ export default function Marquee() {
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-cream to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-cream to-transparent" />
 
-      <div ref={trackRef} className="flex w-max items-center gap-10 whitespace-nowrap">
+      <div ref={trackRef} className="flex w-max items-center gap-6 whitespace-nowrap sm:gap-10">
         {row.map((label, i) => (
-          <span key={i} className="inline-flex items-center gap-10">
+          <span key={i} className="inline-flex items-center gap-6 sm:gap-10">
             <span className="text-sm font-bold uppercase tracking-[0.28em] text-teal-900/80 md:text-base">
               {label}
             </span>
