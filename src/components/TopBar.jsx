@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowUpRight, Search, ChevronDown } from 'lucide-react'
+import SearchPalette from './SearchPalette'
 
 const navLinks = [
   { label1: 'About', label2: 'Dr. Samar', href: '#about' },
@@ -13,6 +14,7 @@ const DEVANAGARI_FONT = "'Noto Serif Devanagari', 'Tiro Devanagari Sanskrit', 'F
 
 export default function TopBar() {
   const [open, setOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -20,6 +22,18 @@ export default function TopBar() {
       document.body.style.overflow = ''
     }
   }, [open])
+
+  // ⌘K / Ctrl+K opens the search palette from anywhere
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setSearchOpen((v) => !v)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   return (
     <>
@@ -66,10 +80,14 @@ export default function TopBar() {
           <div className="hidden flex-none items-center gap-5 lg:flex">
             <button
               type="button"
+              onClick={() => setSearchOpen(true)}
               aria-label="Search"
               className="group flex items-center gap-2.5 rounded-full bg-peri-50 px-4 py-2 text-[12.5px] text-navy-500 transition hover:bg-peri-100"
             >
               <span>search...</span>
+              <kbd className="hidden rounded border border-peri-200 bg-white/80 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-navy-700 xl:inline-block">
+                ⌘K
+              </kbd>
               <Search size={13} className="text-navy-700" strokeWidth={2} />
             </button>
             <a href="tel:+919257596655" className="block text-right leading-tight">
@@ -82,14 +100,23 @@ export default function TopBar() {
             </a>
           </div>
 
-          {/* Mobile/tablet — hamburger only */}
-          <button
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="grid h-11 w-11 flex-none place-items-center rounded-full border border-peri-200 text-navy-900 transition hover:bg-peri-50 lg:hidden"
-          >
-            <Menu size={18} strokeWidth={1.5} />
-          </button>
+          {/* Mobile/tablet — search + hamburger */}
+          <div className="flex flex-none items-center gap-2 lg:hidden">
+            <button
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+              className="grid h-11 w-11 place-items-center rounded-full border border-peri-200 text-navy-900 transition hover:bg-peri-50"
+            >
+              <Search size={17} strokeWidth={2} />
+            </button>
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="grid h-11 w-11 place-items-center rounded-full border border-peri-200 text-navy-900 transition hover:bg-peri-50"
+            >
+              <Menu size={18} strokeWidth={1.5} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -170,6 +197,9 @@ export default function TopBar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Command-bar style search */}
+      <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   )
 }

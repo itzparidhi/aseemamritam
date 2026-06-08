@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, ArrowUpRight } from 'lucide-react'
 import SectionLabel from './SectionLabel'
@@ -15,6 +15,15 @@ export default function VideoGallery() {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [bookingOpen, setBookingOpen] = useState(false)
+
+  // SearchPalette dispatches 'open-booking' when the user picks the
+  // "Book a consultation" action — receive it here so the modal opens
+  // regardless of where the action was triggered from.
+  useEffect(() => {
+    const onOpen = () => setBookingOpen(true)
+    window.addEventListener('open-booking', onOpen)
+    return () => window.removeEventListener('open-booking', onOpen)
+  }, [])
 
   const togglePlay = () => {
     const el = videoRef.current
