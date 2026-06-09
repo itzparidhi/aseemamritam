@@ -9,7 +9,7 @@ export default function EmergencyStrip() {
           className="inline-flex items-center gap-2 text-cream/90 transition hover:text-cream"
         >
           <Phone size={11} className="text-gold-400" />
-          <span className="font-semibold">24×7 Emergency · +91 92575 96655</span>
+          <span className="font-num font-semibold">24×7 Emergency · +91 92575 96655</span>
         </a>
         <span className="hidden text-cream/55 md:inline">Aseem Amritam · Vaishali Nagar · Jaipur</span>
       </div>

@@ -72,15 +72,15 @@ export default function Footer() {
           <Column
             heading="Location"
             items={[
-              'Plot No. 123–124, Ganga Sagar-B',
+              '123, Ganga Path, B Block',
               'Nemi Nagar Ext., Vaishali Nagar',
-              'Jaipur, Rajasthan',
+              'Jaipur, Rajasthan 302021',
             ]}
           />
           <Column
             heading="Call Us"
             items={[
-              { text: '+91 92575 96655', href: 'tel:+919257596655' },
+              { text: '+91 92575 96655', href: 'tel:+919257596655', mono: true },
               // { text: 'hello@aseemamritam.in', href: 'mailto:hello@aseemamritam.in' },
             ]}
           />
@@ -216,7 +216,12 @@ function Column({ heading, items }) {
           }
           return (
             <li key={i}>
-              <a href={it.href} className="text-cream/75 hover:text-cream">{it.text}</a>
+              <a
+                href={it.href}
+                className={`text-cream/75 hover:text-cream ${it.mono ? 'font-num' : ''}`}
+              >
+                {it.text}
+              </a>
             </li>
           )
         })}

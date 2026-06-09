@@ -5,7 +5,7 @@ import SearchPalette from './SearchPalette'
 
 const navLinks = [
   { label1: 'About', label2: 'Dr. Samar', href: '#about' },
-  { label1: 'A', label2: 'Message', href: '#gallery' },
+  { label1: 'Hear', label2: 'from Us', href: '#gallery' },
   { label1: 'Why', label2: 'Choose Us', href: '#why' },
   { label1: 'Visit', label2: '& Contact', href: '#contact' },
 ]
@@ -92,7 +92,7 @@ export default function TopBar() {
             </button>
             <a href="tel:+919257596655" className="block text-right leading-tight">
               <div className="text-[13.5px] font-bold text-navy-950">
-                Tel. <span className="font-display tracking-tight">+91 92575 96655</span>
+                Tel. <span className="font-num">+91 92575 96655</span>
               </div>
               <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-700/70">
                 Open 24 Hours · Vaishali Nagar
@@ -190,7 +190,7 @@ export default function TopBar() {
             </nav>
 
             <div className="container-x flex-none border-t border-cream/10 py-5 text-xs text-cream/65">
-              <a href="tel:+919257596655" className="hover:text-cream">
+              <a href="tel:+919257596655" className="font-num hover:text-cream">
                 +91 92575 96655 · 24/7
               </a>
             </div>

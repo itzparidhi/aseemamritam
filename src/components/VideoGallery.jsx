@@ -29,7 +29,13 @@ export default function VideoGallery() {
     const el = videoRef.current
     if (!el) return
     if (el.paused) {
-      el.play()
+      // After the video ends, currentTime sits at duration — play() then
+      // does nothing visible. Rewind first so the user can replay.
+      if (el.ended || (el.duration && el.currentTime >= el.duration - 0.1)) {
+        el.currentTime = 0
+      }
+      const p = el.play()
+      if (p && typeof p.then === 'function') p.catch(() => setPlaying(false))
       setPlaying(true)
     } else {
       el.pause()
@@ -129,7 +135,7 @@ export default function VideoGallery() {
               poster="/dr-samar.png"
               playsInline
               preload="metadata"
-              onEnded={() => setPlaying(false)}
+              loop
               className="absolute inset-0 h-full w-full object-cover"
             />
 

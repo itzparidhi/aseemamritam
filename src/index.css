@@ -78,4 +78,14 @@ html.lenis, html.lenis body { height: auto; }
     @apply backdrop-blur-md bg-white/65 border border-white/70;
     box-shadow: 0 4px 16px -4px rgba(28, 40, 73, 0.1);
   }
+
+  /* Numerals — use system monospace + tabular figures so phone numbers,
+     times, and other digit-heavy strings line up cleanly and read as
+     "data" rather than running prose. */
+  .font-num {
+    font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Monaco,
+      Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-feature-settings: 'tnum', 'lnum';
+    letter-spacing: -0.005em;
+  }
 }

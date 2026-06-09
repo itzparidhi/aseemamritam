@@ -133,7 +133,7 @@ function LocationCard({ tag, name, address, hours, phone, highlight }) {
             <Phone size={18} className={highlight ? 'text-gold-400' : 'text-teal-700'} />
             <a
               href={`tel:${phone.replace(/\s/g, '')}`}
-              className={highlight ? 'text-cream hover:underline' : 'text-teal-900 hover:underline'}
+              className={`font-num ${highlight ? 'text-cream hover:underline' : 'text-teal-900 hover:underline'}`}
             >
               {phone}
             </a>

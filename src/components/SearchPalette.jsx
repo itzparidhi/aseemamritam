@@ -44,6 +44,7 @@ const actions = [
     id: 'call',
     title: 'Call Dr. Samar',
     description: '+91 92575 96655 · Open 24 hours',
+    descriptionFont: 'num',
     category: 'Contact',
     keywords: ['call', 'phone', 'number', 'dr samar', 'doctor', 'contact', 'ring'],
     icon: Phone,
@@ -315,7 +316,11 @@ export default function SearchPalette({ open, onClose }) {
                         {a.title}
                       </div>
                       {a.description && (
-                        <div className="truncate text-[12px] text-navy-700/70">
+                        <div
+                          className={`truncate text-[12px] text-navy-700/70 ${
+                            a.descriptionFont === 'num' ? 'font-num' : ''
+                          }`}
+                        >
                           {a.description}
                         </div>
                       )}

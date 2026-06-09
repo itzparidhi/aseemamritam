@@ -18,6 +18,30 @@ const fmtDate = (d) =>
     ? d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
     : ''
 
+// Parse "4:30 PM" → minutes from midnight (970 for 4:30 PM).
+const slotToMinutes = (slot) => {
+  const [t, period] = slot.split(' ')
+  let [h, m] = t.split(':').map(Number)
+  if (period === 'PM' && h !== 12) h += 12
+  if (period === 'AM' && h === 12) h = 0
+  return h * 60 + m
+}
+
+const LAST_SLOT_MINUTES = slotToMinutes(TIME_SLOTS[TIME_SLOTS.length - 1])
+
+const isSameCalendarDay = (a, b) =>
+  a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate()
+
+// A slot is in the past only when the selected date is today AND the slot's
+// start time is at or before "now". Times use the user's local clock — for
+// patients in India this is IST, which matches the centre's hours.
+const isSlotInPast = (slot, selectedDate, now) => {
+  if (!selectedDate || !isSameCalendarDay(selectedDate, now)) return false
+  return slotToMinutes(slot) <= now.getHours() * 60 + now.getMinutes()
+}
+
 const STEPS = ['Date', 'Time', 'Details', 'Confirm', 'Done']
 
 export default function BookingModal({ open, onClose }) {
@@ -26,6 +50,7 @@ export default function BookingModal({ open, onClose }) {
   const [time, setTime] = useState(null)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
+  const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -33,6 +58,22 @@ export default function BookingModal({ open, onClose }) {
       document.body.style.overflow = ''
     }
   }, [open])
+
+  // Keep "now" fresh while the modal is open so slots tick from available →
+  // disabled as their start time passes, without a manual refresh.
+  useEffect(() => {
+    if (!open) return
+    setNow(new Date())
+    const id = setInterval(() => setNow(new Date()), 30_000)
+    return () => clearInterval(id)
+  }, [open])
+
+  // If the chosen slot becomes past while the user is still in the flow
+  // (e.g. they pick today's 5:00 PM at 4:58, hesitate, then it's 5:01),
+  // drop the now-invalid selection so they can't proceed with a stale slot.
+  useEffect(() => {
+    if (time && date && isSlotInPast(time, date, now)) setTime(null)
+  }, [date, time, now])
 
   // Reset state shortly after the modal closes
   useEffect(() => {
@@ -47,6 +88,9 @@ export default function BookingModal({ open, onClose }) {
       return () => clearTimeout(t)
     }
   }, [open])
+
+  const nowMinutes = now.getHours() * 60 + now.getMinutes()
+  const todayHasNoSlotsLeft = nowMinutes >= LAST_SLOT_MINUTES
 
   const canProceed = () => {
     if (step === 0) return !!date
@@ -148,8 +192,17 @@ export default function BookingModal({ open, onClose }) {
                       (10 AM – 4 PM). Sundays are closed.
                     </p>
                     <div className="mt-4 rounded-2xl border border-peri-200 p-3">
-                      <MiniCalendar value={date} onChange={setDate} />
+                      <MiniCalendar
+                        value={date}
+                        onChange={setDate}
+                        disableToday={todayHasNoSlotsLeft}
+                      />
                     </div>
+                    {todayHasNoSlotsLeft && (
+                      <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-peri-600">
+                        Today's slots are over · please pick another day
+                      </p>
+                    )}
                     {date && (
                       <div className="mt-3 text-center text-sm font-semibold text-navy-900">
                         Selected · {fmtDate(date)}
@@ -165,20 +218,33 @@ export default function BookingModal({ open, onClose }) {
                       Evening slots, 30 minutes each. {fmtDate(date)}.
                     </p>
                     <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                      {TIME_SLOTS.map((slot) => (
-                        <button
-                          key={slot}
-                          onClick={() => setTime(slot)}
-                          className={`rounded-xl border px-3 py-3 text-sm font-bold transition ${
-                            time === slot
-                              ? 'border-navy-900 bg-navy-900 text-cream'
-                              : 'border-peri-200 text-navy-900 hover:border-peri-300 hover:bg-peri-50'
-                          }`}
-                        >
-                          {slot}
-                        </button>
-                      ))}
+                      {TIME_SLOTS.map((slot) => {
+                        const past = isSlotInPast(slot, date, now)
+                        const selected = time === slot
+                        return (
+                          <button
+                            key={slot}
+                            disabled={past}
+                            onClick={() => setTime(slot)}
+                            aria-label={past ? `${slot} — slot already passed` : slot}
+                            className={`rounded-xl border px-3 py-3 text-sm font-bold transition ${
+                              past
+                                ? 'cursor-not-allowed border-peri-100 bg-peri-50/40 text-navy-300 line-through'
+                                : selected
+                                ? 'border-navy-900 bg-navy-900 text-cream'
+                                : 'border-peri-200 text-navy-900 hover:border-peri-300 hover:bg-peri-50'
+                            }`}
+                          >
+                            {slot}
+                          </button>
+                        )
+                      })}
                     </div>
+                    {date && isSameCalendarDay(date, now) && TIME_SLOTS.every((s) => isSlotInPast(s, date, now)) && (
+                      <p className="mt-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-peri-600">
+                        All of today's slots have passed · please go back and pick another day
+                      </p>
+                    )}
                   </StepWrap>
                 )}
 
@@ -209,14 +275,14 @@ export default function BookingModal({ open, onClose }) {
                           WhatsApp Number
                         </span>
                         <div className="mt-1.5 flex items-center gap-2 rounded-xl border border-peri-200 bg-white px-4 transition focus-within:border-navy-900">
-                          <span className="text-sm font-bold text-navy-700">+91</span>
+                          <span className="font-num text-sm font-bold text-navy-700">+91</span>
                           <input
                             type="tel"
                             inputMode="numeric"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                             placeholder="10-digit mobile"
-                            className="flex-1 bg-transparent py-3 text-sm font-semibold text-navy-950 outline-none placeholder:text-navy-400"
+                            className="flex-1 bg-transparent py-3 font-num text-sm font-semibold text-navy-950 outline-none placeholder:text-navy-400 placeholder:font-sans"
                           />
                         </div>
                       </label>
@@ -233,10 +299,10 @@ export default function BookingModal({ open, onClose }) {
                     </p>
 
                     <div className="mt-6 space-y-4 rounded-2xl border border-peri-200 bg-peri-50/40 p-5">
-                      <Row icon={CalIcon} label="Date" value={fmtDate(date)} />
-                      <Row icon={Clock} label="Time" value={time} />
+                      <Row icon={CalIcon} label="Date" value={fmtDate(date)} mono />
+                      <Row icon={Clock} label="Time" value={time} mono />
                       <Row icon={User} label="Name" value={name} />
-                      <Row icon={Phone} label="WhatsApp" value={`+91 ${phone}`} />
+                      <Row icon={Phone} label="WhatsApp" value={`+91 ${phone}`} mono />
                     </div>
                   </StepWrap>
                 )}
@@ -258,7 +324,7 @@ export default function BookingModal({ open, onClose }) {
                       <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-navy-700/80">
                         Your WhatsApp opened with the booking details. Once Dr. Samar's team
                         receives it, they'll confirm directly on WhatsApp at{' '}
-                        <span className="font-bold text-navy-950">+91 {phone}</span>.
+                        <span className="font-num font-bold text-navy-950">+91 {phone}</span>.
                       </p>
 
                       <div className="mt-6 w-full max-w-xs rounded-2xl border border-peri-200 bg-peri-50/40 p-4 text-left">
@@ -332,7 +398,7 @@ function StepWrap({ children }) {
   )
 }
 
-function Row({ icon: Icon, label, value }) {
+function Row({ icon: Icon, label, value, mono = false }) {
   return (
     <div className="flex items-center gap-3">
       <div className="grid h-9 w-9 flex-none place-items-center rounded-full bg-white text-peri-600">
@@ -342,13 +408,15 @@ function Row({ icon: Icon, label, value }) {
         <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
           {label}
         </div>
-        <div className="text-sm font-bold text-navy-950">{value}</div>
+        <div className={`text-sm font-bold text-navy-950 ${mono ? 'font-num' : ''}`}>
+          {value}
+        </div>
       </div>
     </div>
   )
 }
 
-function MiniCalendar({ value, onChange }) {
+function MiniCalendar({ value, onChange, disableToday = false }) {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
@@ -386,7 +454,7 @@ function MiniCalendar({ value, onChange }) {
     const isSunday = d.getDay() === 0
     const isToday = d.getTime() === today.getTime()
     const isSelected = value && d.getTime() === value.getTime()
-    const isDisabled = isPast || isSunday
+    const isDisabled = isPast || isSunday || (isToday && disableToday)
 
     cells.push(
       <button
