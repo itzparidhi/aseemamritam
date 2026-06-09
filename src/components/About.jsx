@@ -66,11 +66,11 @@ export default function About() {
 
               <div className="mt-10 space-y-3">
                 <PillButton
-                  href="#contact"
+                  href="https://arc.net/l/quote/pridbbib"
                   label="What kind of doctor is he? See the full profile here."
                 />
                 <PillButton
-                  href="#gallery"
+                  href="https://www.bwhealthcareworld.com/article/understanding-ovarian-cancer-606092"
                   label="Read educational articles on cancer care here!"
                 />
               </div>
@@ -194,9 +194,12 @@ function ChecklistItem({ text, delay }) {
 }
 
 function PillButton({ href, label }) {
+  const external = /^https?:\/\//.test(href)
   return (
     <a
       href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       className="group flex items-center justify-between gap-4 rounded-full border bg-white px-6 py-4 text-sm font-semibold text-navy-900 transition"
       style={{ borderColor: PERI_BORDER }}
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = PERI_HOVER_BG)}
