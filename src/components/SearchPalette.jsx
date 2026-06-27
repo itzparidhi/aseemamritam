@@ -286,7 +286,7 @@ export default function SearchPalette({ open, onClose }) {
               >
                 <span className="text-lg leading-none">×</span>
               </button>
-              <kbd className="hidden flex-none rounded-md border border-peri-200 bg-peri-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-navy-700 sm:inline-block">
+              <kbd className="hidden flex-none rounded-md border border-peri-200 bg-peri-50 px-2 py-0.5 text-[14px] font-bold uppercase tracking-wider text-navy-700 sm:inline-block">
                 Esc
               </kbd>
             </div>
@@ -312,12 +312,12 @@ export default function SearchPalette({ open, onClose }) {
                       <a.icon size={16} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="truncate text-[14px] font-semibold text-navy-950 sm:text-sm">
+                      <div className="truncate text-[18px] font-semibold text-navy-950 sm:text-sm">
                         {a.title}
                       </div>
                       {a.description && (
                         <div
-                          className={`truncate text-[12px] text-navy-700/70 ${
+                          className={`truncate text-[16px] text-navy-700/70 ${
                             a.descriptionFont === 'num' ? 'font-num' : ''
                           }`}
                         >
@@ -325,7 +325,7 @@ export default function SearchPalette({ open, onClose }) {
                         </div>
                       )}
                     </div>
-                    <div className="hidden flex-none text-[9px] font-bold uppercase tracking-[0.18em] text-peri-500 sm:block">
+                    <div className="hidden flex-none text-[13px] font-bold uppercase tracking-[0.18em] text-peri-500 sm:block">
                       {a.category}
                     </div>
                     <ChevronRight size={14} className="flex-none text-peri-400" />
@@ -335,7 +335,7 @@ export default function SearchPalette({ open, onClose }) {
             </div>
 
             {/* Footer hints — hidden on phones where there's no keyboard */}
-            <div className="hidden flex-none items-center justify-between gap-2 border-t border-peri-100 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-navy-700/60 sm:flex">
+            <div className="hidden flex-none items-center justify-between gap-2 border-t border-peri-100 px-5 py-3 text-[14px] font-bold uppercase tracking-[0.16em] text-navy-700/60 sm:flex">
               <div className="flex items-center gap-4">
                 <span className="inline-flex items-center gap-1.5">
                   <kbd className="rounded border border-peri-200 bg-peri-50 px-1.5 py-0.5">
@@ -356,7 +356,7 @@ export default function SearchPalette({ open, onClose }) {
             </div>
 
             {/* Mobile result count + close hint */}
-            <div className="flex flex-none items-center justify-between border-t border-peri-100 px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-navy-700/60 sm:hidden">
+            <div className="flex flex-none items-center justify-between border-t border-peri-100 px-4 py-2.5 text-[15px] font-bold uppercase tracking-wider text-navy-700/60 sm:hidden">
               <span>Tap a result</span>
               <span className="tabular-nums">
                 {filtered.length} {filtered.length === 1 ? 'result' : 'results'}

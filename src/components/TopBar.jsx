@@ -38,17 +38,17 @@ export default function TopBar() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-peri-100/70 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex h-24 max-w-[1500px] items-center justify-between gap-4 px-3 sm:px-5 md:h-28 md:gap-8 lg:px-6">
+        <div className="mx-auto flex h-28 max-w-[1500px] items-center justify-between gap-4 px-3 sm:px-5 md:h-36 md:gap-8 lg:px-6">
           {/* LEFT — Hindi brand name */}
           <a href="#top" className="flex flex-none items-center">
             <div className="leading-tight">
               <div
-                className="text-2xl font-bold text-navy-950 sm:text-[26px] md:text-[28px]"
+                className="text-9xl font-bold text-navy-950 sm:text-[50px] md:text-[56px]"
                 style={{ fontFamily: DEVANAGARI_FONT, letterSpacing: '0.01em' }}
               >
                 असीम अमृतम
               </div>
-              <div className="mt-1 text-[11px] font-bold uppercase tracking-[0.26em] text-peri-500 md:text-[12px]">
+              <div className="mt-1.5 text-[22px] font-bold uppercase tracking-[0.26em] text-peri-500 md:text-[24px]">
                 Cancer Centre
               </div>
             </div>
@@ -60,7 +60,7 @@ export default function TopBar() {
               <a
                 key={link.label1}
                 href={link.href}
-                className="group inline-flex flex-col items-center text-center text-[12.5px] font-semibold leading-[1.25] text-navy-900 transition hover:text-navy-950"
+                className="group inline-flex flex-col items-center text-center text-[23px] font-semibold leading-[1.25] text-navy-900 transition hover:text-navy-950"
               >
                 <span className="flex items-center gap-1">
                   {link.label1}
@@ -82,19 +82,19 @@ export default function TopBar() {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
-              className="group flex items-center gap-2.5 rounded-full bg-peri-50 px-4 py-2 text-[12.5px] text-navy-500 transition hover:bg-peri-100"
+              className="group flex items-center gap-2.5 rounded-full bg-peri-50 px-4 py-2 text-[16.5px] text-navy-500 transition hover:bg-peri-100"
             >
               <span>search...</span>
-              <kbd className="hidden rounded border border-peri-200 bg-white/80 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-navy-700 xl:inline-block">
+              <kbd className="hidden rounded border border-peri-200 bg-white/80 px-1.5 py-0.5 text-[13px] font-bold uppercase tracking-wider text-navy-700 xl:inline-block">
                 ⌘K
               </kbd>
               <Search size={13} className="text-navy-700" strokeWidth={2} />
             </button>
             <a href="tel:+919257596655" className="block text-right leading-tight">
-              <div className="text-[13.5px] font-bold text-navy-950">
+              <div className="text-[23px] font-bold text-navy-950">
                 Tel. <span className="font-num">+91 92575 96655</span>
               </div>
-              <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-700/70">
+              <div className="mt-1 text-[18px] font-semibold uppercase tracking-[0.14em] text-navy-700/70">
                 Open 24 Hours · Vaishali Nagar
               </div>
             </a>
@@ -142,7 +142,7 @@ export default function TopBar() {
                   >
                     असीम अमृतम
                   </div>
-                  <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-cream/65">
+                  <div className="text-[13px] font-bold uppercase tracking-[0.22em] text-cream/65">
                     Cancer Centre
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export default function TopBar() {
             </div>
 
             <nav className="container-x relative flex flex-1 min-h-0 flex-col overflow-y-auto pt-6 md:pt-10">
-              <div className="mb-5 text-[10px] font-bold uppercase tracking-[0.32em] text-cream/50">
+              <div className="mb-5 text-[14px] font-bold uppercase tracking-[0.32em] text-cream/50">
                 Menu
               </div>
               <ul className="space-y-2 sm:space-y-3 md:space-y-4">
@@ -173,7 +173,7 @@ export default function TopBar() {
                       onClick={() => setOpen(false)}
                       className="group inline-flex items-baseline gap-4 font-display text-3xl font-bold leading-[1.05] tracking-[0.02em] text-cream transition hover:text-gold-300 sm:text-4xl md:text-5xl lg:text-6xl"
                     >
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-cream/45">
+                      <span className="text-[14px] font-bold uppercase tracking-widest text-cream/45">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="uppercase">

@@ -62,7 +62,7 @@ export default function VideoGallery() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="text-[11px] font-bold uppercase tracking-[0.28em] text-gold-400">
+            <div className="text-[15px] font-bold uppercase tracking-[0.28em] text-gold-400">
               In His Own Voice
             </div>
 
@@ -99,7 +99,7 @@ export default function VideoGallery() {
                     duration: 0.6,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="flex items-start gap-3 text-[14px] leading-[1.6] text-teal-100/85 sm:text-[15px]"
+                  className="flex items-start gap-3 text-[18px] leading-[1.6] text-teal-100/85 sm:text-[19px]"
                 >
                   <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-gold-400" />
                   <span>{h}</span>
@@ -132,7 +132,7 @@ export default function VideoGallery() {
             <video
               ref={videoRef}
               src="/dr-samar-message.mp4"
-              poster="/dr-samar.png"
+              poster="/dr-samar.jpeg"
               playsInline
               preload="metadata"
               loop
@@ -169,7 +169,7 @@ export default function VideoGallery() {
                 playing ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-300">
+              <div className="text-[14px] font-bold uppercase tracking-[0.22em] text-gold-300">
                 Watch · 60 seconds
               </div>
               <div className="mt-1 font-display text-lg font-bold leading-tight text-cream">

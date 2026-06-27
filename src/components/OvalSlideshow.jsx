@@ -1,10 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 export const heroSlides = [
-  { src: '/dr-samar.png', label: 'Dr. Aseem Kumar Samar', position: 'object-top' },
+  { src: '/dr-samar.jpeg', label: 'Dr. Aseem Kumar Samar', position: 'object-top' },
   { src: '/clinic/clinic2.jpeg', label: 'Aseem Amritam Cancer Centre', position: 'object-center' },
-  { src: '/clinic/clinic3.jpeg', label: 'Reception · Aseem Amritam', position: 'object-center' },
-  { src: '/clinic/clinic4.jpeg', label: 'Patient waiting area', position: 'object-center' },
+  // { src: '/clinic/clinic3.jpeg', label: 'Reception · Aseem Amritam', position: 'object-center' },
+  // { src: '/clinic/clinic4.jpeg', label: 'Patient waiting area', position: 'object-center' },
 ]
 
 /**

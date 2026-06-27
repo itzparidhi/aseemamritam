@@ -156,7 +156,7 @@ export default function BookingModal({ open, onClose }) {
                   <CalIcon size={15} />
                 </div>
                 <div className="leading-tight">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+                  <div className="text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
                     Book a Consultation
                   </div>
                   <div className="text-sm font-bold text-navy-950">
@@ -199,7 +199,7 @@ export default function BookingModal({ open, onClose }) {
                       />
                     </div>
                     {todayHasNoSlotsLeft && (
-                      <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-peri-600">
+                      <p className="mt-3 text-center text-[15px] font-semibold uppercase tracking-[0.16em] text-peri-600">
                         Today's slots are over · please pick another day
                       </p>
                     )}
@@ -241,7 +241,7 @@ export default function BookingModal({ open, onClose }) {
                       })}
                     </div>
                     {date && isSameCalendarDay(date, now) && TIME_SLOTS.every((s) => isSlotInPast(s, date, now)) && (
-                      <p className="mt-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-peri-600">
+                      <p className="mt-4 text-center text-[15px] font-semibold uppercase tracking-[0.16em] text-peri-600">
                         All of today's slots have passed · please go back and pick another day
                       </p>
                     )}
@@ -257,7 +257,7 @@ export default function BookingModal({ open, onClose }) {
 
                     <div className="mt-6 space-y-4">
                       <label className="block">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+                        <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
                           Full Name
                         </span>
                         <input
@@ -271,7 +271,7 @@ export default function BookingModal({ open, onClose }) {
                       </label>
 
                       <label className="block">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+                        <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
                           WhatsApp Number
                         </span>
                         <div className="mt-1.5 flex items-center gap-2 rounded-xl border border-peri-200 bg-white px-4 transition focus-within:border-navy-900">
@@ -328,7 +328,7 @@ export default function BookingModal({ open, onClose }) {
                       </p>
 
                       <div className="mt-6 w-full max-w-xs rounded-2xl border border-peri-200 bg-peri-50/40 p-4 text-left">
-                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+                        <div className="text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
                           Booking Reference
                         </div>
                         <div className="mt-1 font-display text-base font-bold leading-tight text-navy-950">
@@ -348,7 +348,7 @@ export default function BookingModal({ open, onClose }) {
                 {step > 0 ? (
                   <button
                     onClick={back}
-                    className="inline-flex items-center gap-1 text-[12px] font-bold uppercase tracking-[0.16em] text-navy-700 transition hover:text-navy-950"
+                    className="inline-flex items-center gap-1 text-[16px] font-bold uppercase tracking-[0.16em] text-navy-700 transition hover:text-navy-950"
                   >
                     <ChevronLeft size={14} /> Back
                   </button>
@@ -362,7 +362,7 @@ export default function BookingModal({ open, onClose }) {
                     next()
                   }}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-2.5 text-[12px] font-bold uppercase tracking-[0.16em] text-cream transition hover:bg-navy-950 disabled:cursor-not-allowed disabled:bg-navy-300"
+                  className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-2.5 text-[16px] font-bold uppercase tracking-[0.16em] text-cream transition hover:bg-navy-950 disabled:cursor-not-allowed disabled:bg-navy-300"
                 >
                   {step === 3 ? 'Confirm & Open WhatsApp' : 'Next'}
                   <ChevronRight size={14} />
@@ -372,7 +372,7 @@ export default function BookingModal({ open, onClose }) {
               <div className="border-t border-peri-100 px-6 py-4">
                 <button
                   onClick={onClose}
-                  className="w-full rounded-full bg-navy-900 px-6 py-3 text-[12px] font-bold uppercase tracking-[0.16em] text-cream transition hover:bg-navy-950"
+                  className="w-full rounded-full bg-navy-900 px-6 py-3 text-[16px] font-bold uppercase tracking-[0.16em] text-cream transition hover:bg-navy-950"
                 >
                   Done
                 </button>
@@ -405,7 +405,7 @@ function Row({ icon: Icon, label, value, mono = false }) {
         <Icon size={14} />
       </div>
       <div className="flex-1">
-        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+        <div className="text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
           {label}
         </div>
         <div className={`text-sm font-bold text-navy-950 ${mono ? 'font-num' : ''}`}>
@@ -487,7 +487,7 @@ function MiniCalendar({ value, onChange, disableToday = false }) {
         >
           <ChevronLeft size={16} />
         </button>
-        <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-navy-900">
+        <div className="text-[16px] font-bold uppercase tracking-[0.18em] text-navy-900">
           {monthName} {viewMonth.year}
         </div>
         <button
@@ -503,7 +503,7 @@ function MiniCalendar({ value, onChange, disableToday = false }) {
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
           <div
             key={i}
-            className="grid h-7 place-items-center text-[10px] font-bold uppercase tracking-wider text-navy-400"
+            className="grid h-7 place-items-center text-[14px] font-bold uppercase tracking-wider text-navy-400"
           >
             {d}
           </div>

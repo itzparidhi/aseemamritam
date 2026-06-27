@@ -13,23 +13,16 @@ const checklist = [
   'Specialises in chemotherapy, targeted therapy, immunotherapy, and long-term maintenance care — tailored to each patient.',
 ]
 
-const promises = [
-  { title: 'Relaxing time', body: 'Thorough, unhurried support until every question has been resolved.' },
-  { title: 'Easy-to-understand explanation', body: 'Plain language, illustrations, and photographs — never jargon.' },
-  { title: 'Multiple options', body: 'Treatment paths tailored to your life, not the other way around.' },
-  { title: 'No pressure, ever', body: 'Honest advice that prioritises your wishes — never a hard sell.' },
-]
-
 export default function About() {
   return (
     <section id="about" className="relative text-navy-950">
       <div className="container-x pt-16 md:pt-24">
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
-          {/* LEFT — pinned doctor image (stays sticky for BOTH right panels) */}
-          <div className="lg:col-span-7 lg:h-full">
-            <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:sticky lg:top-24 lg:h-[calc(100vh-7rem)]">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* LEFT — doctor image with gradient fades */}
+          <div className="lg:col-span-7">
+            <div className="relative w-full aspect-[4/5]">
               <img
-                src="/dr-samar.png"
+                src="/dr-samar.jpeg"
                 alt="Dr. Aseem Samar — Medical Oncologist, Jaipur"
                 className="absolute inset-0 h-full w-full object-cover object-top"
               />
@@ -40,51 +33,43 @@ export default function About() {
             </div>
           </div>
 
-          {/* RIGHT — TWO stacked sticky panels, panel 2 scrolls up over panel 1 */}
+          {/* RIGHT — director / intro / checklist / buttons */}
           <div className="lg:col-span-5">
-            {/* PANEL 1 — Director / intro / checklist / buttons */}
-            <div className="bg-white lg:sticky lg:top-24 lg:flex lg:min-h-[calc(100vh-7rem)] lg:flex-col lg:justify-center lg:py-8">
-              <DirectorHeader />
+            <DirectorHeader />
 
-              <motion.p
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-10 text-[15px] leading-[1.95] tracking-[0.005em] text-navy-800/90 sm:text-base"
-              >
-                A specialized physician who diagnoses, stages, and treats cancer using{' '}
-                <span className="font-semibold text-navy-950">systemic therapies</span> —
-                chemotherapy, immunotherapy, and targeted therapy.
-              </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-10 text-[19px] leading-[1.95] tracking-[0.005em] text-navy-800/90 sm:text-base"
+            >
+              A specialized physician who diagnoses, stages, and treats cancer using{' '}
+              <span className="font-semibold text-navy-950">systemic therapies</span> —
+              chemotherapy, immunotherapy, and targeted therapy.
+            </motion.p>
 
-              <ul className="mt-10 space-y-6">
-                {checklist.map((text, i) => (
-                  <ChecklistItem key={i} text={text} delay={i * 0.1} />
-                ))}
-              </ul>
+            <ul className="mt-10 space-y-6">
+              {checklist.map((text, i) => (
+                <ChecklistItem key={i} text={text} delay={i * 0.1} />
+              ))}
+            </ul>
 
-              <div className="mt-10 space-y-3">
-                <PillButton
-                  href="https://arc.net/l/quote/pridbbib"
-                  label="What kind of doctor is he? See the full profile here."
-                />
-                <PillButton
-                  href="https://www.bwhealthcareworld.com/article/understanding-ovarian-cancer-606092"
-                  label="Read educational articles on cancer care here!"
-                />
-              </div>
-            </div>
-
-            {/* PANEL 2 — Promise — bg-white covers PANEL 1 as it slides up */}
-            <div className="mt-16 bg-white lg:mt-0 lg:sticky lg:top-24 lg:flex lg:min-h-[calc(100vh-7rem)] lg:flex-col lg:justify-center lg:py-8">
-              <PromiseSection />
+            <div className="mt-10 space-y-3">
+              <PillButton
+                href="https://arc.net/l/quote/pridbbib"
+                label="What kind of doctor is he? See the full profile here."
+              />
+              <PillButton
+                href="https://www.bwhealthcareworld.com/article/understanding-ovarian-cancer-606092"
+                label="Read educational articles on cancer care here!"
+              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Divider with 4-point star — outside the sticky grid */}
+      {/* Divider with 4-point star */}
       <div className="container-x pb-16 pt-20 md:pb-24">
         <div className="flex items-center gap-3">
           <FourPointStar />
@@ -107,7 +92,7 @@ function DirectorHeader() {
       <div>
         {/* DIRECTOR eyebrow — periwinkle pill with status dot */}
         <span
-          className="inline-flex items-center gap-2 rounded-full border bg-peri-50/70 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.24em]"
+          className="inline-flex items-center gap-2 rounded-full border bg-peri-50/70 px-3.5 py-1.5 text-[14px] font-bold uppercase tracking-[0.24em]"
           style={{ borderColor: PERI_BORDER, color: PERI_TEXT }}
         >
           <span
@@ -125,7 +110,7 @@ function DirectorHeader() {
           Dr. Aseem Samar
         </h2>
         <div
-          className="mt-2 text-[11px] font-bold uppercase tracking-[0.22em]"
+          className="mt-2 text-[15px] font-bold uppercase tracking-[0.22em]"
           style={{ color: PERI_TEXT }}
         >
           Medical Oncology · Jaipur
@@ -133,7 +118,7 @@ function DirectorHeader() {
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        {/* <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-navy-950">SNS</div> */}
+        {/* <div className="text-[14px] font-bold uppercase tracking-[0.22em] text-navy-950">SNS</div> */}
         <div className="flex gap-2">
           <SocialDot href="https://www.instagram.com/aseemamritam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" label="Instagram">
             <Instagram size={12} />
@@ -188,7 +173,7 @@ function ChecklistItem({ text, delay }) {
       >
         <Check size={14} strokeWidth={2.4} />
       </div>
-      <p className="text-[15px] leading-[1.75] text-navy-800/90">{text}</p>
+      <p className="text-[19px] leading-[1.75] text-navy-800/90">{text}</p>
     </motion.li>
   )
 }
@@ -205,86 +190,13 @@ function PillButton({ href, label }) {
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = PERI_HOVER_BG)}
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
     >
-      <span className="text-[13.5px] sm:text-sm">{label}</span>
+      <span className="text-[17.5px] sm:text-sm">{label}</span>
       <ChevronRight
         size={18}
         className="flex-none transition group-hover:translate-x-1"
         style={{ color: PERI_TEXT }}
       />
     </a>
-  )
-}
-
-function PromiseSection() {
-  return (
-    <div className="pt-6">
-      {/* Promise label with underline bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center gap-3"
-      >
-        <span className="text-xs font-bold uppercase tracking-[0.24em] text-navy-950">
-          Promise
-        </span>
-        <span className="h-px w-10 bg-navy-950" />
-      </motion.div>
-
-      {/* Heading — slides in from right */}
-      <motion.h3
-        initial={{ opacity: 0, x: 60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-5 font-display text-[1.7rem] font-bold leading-[1.15] text-navy-950 sm:text-3xl lg:text-[2rem]"
-      >
-        Things we promise during consultation
-      </motion.h3>
-
-      {/* 2x2 grid of cards */}
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {promises.map((p, i) => (
-          <motion.div
-            key={p.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: i * 0.13, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl bg-white p-7 text-center shadow-[0_20px_50px_-28px_rgba(28,40,73,0.18)] ring-1 ring-navy-100/60 sm:p-8"
-          >
-            <h4 className="relative inline-block pb-1 font-display text-[15px] font-bold text-navy-950 sm:text-base">
-              {p.title}
-              <SquiggleUnderline />
-            </h4>
-            <p className="mt-4 text-[12.5px] leading-[1.75] text-navy-800/75 sm:text-[13px]">
-              {p.body}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function SquiggleUnderline() {
-  return (
-    <svg
-      className="absolute -bottom-0.5 left-0 w-full"
-      height="4"
-      viewBox="0 0 100 4"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
-      <path
-        d="M0,2 Q12.5,0 25,2 T50,2 T75,2 T100,2"
-        stroke={PERI_BORDER}
-        strokeWidth="1.4"
-        fill="none"
-        strokeLinecap="round"
-      />
-    </svg>
   )
 }
 

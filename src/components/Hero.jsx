@@ -90,7 +90,7 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1
-              className="font-display font-bold leading-[0.95] tracking-[0.01em] bg-gradient-to-b from-teal-950 via-teal-700 to-teal-500 bg-clip-text text-transparent text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.2rem] xl:text-[5rem]"
+              className="font-display font-bold leading-[0.95] tracking-[0.01em] bg-gradient-to-b from-[#1e3a8a] via-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.2rem] xl:text-[5rem]"
               style={{
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
@@ -100,7 +100,7 @@ export default function Hero() {
               ASEEM<br />
               AMRITAM
             </h1>
-            <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.32em] text-teal-800/70 sm:text-[14px] sm:tracking-[0.38em] md:text-[15px]">
+            <div className="mt-3 text-[16px] font-semibold uppercase tracking-[0.32em] text-teal-800/70 sm:text-[18px] sm:tracking-[0.38em] md:text-[19px]">
               Cancer Centre · Jaipur
             </div>
           </motion.div>
@@ -109,7 +109,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.8 }}
-            className="mt-6 max-w-md text-[15px] leading-relaxed text-teal-900/75 sm:mt-7 sm:text-[17px] md:text-[19px]"
+            className="mt-6 max-w-md text-[19px] leading-relaxed text-teal-900/75 sm:mt-7 sm:text-[21px] md:text-[23px]"
           >
             Located in Vaishali Nagar, Jaipur, <b className="text-teal-950">Aseem Amritam Cancer Centre</b> is a comprehensive medical oncology centre where <b className="text-teal-950">Dr. Aseem Kumar Samar</b> listens carefully to every patient and guides them through treatment with expertise and compassion.
           </motion.p>
@@ -133,17 +133,17 @@ export default function Hero() {
                   aria-hidden={i !== tIdx}
                 >
                   <div className="mb-3 flex items-center gap-2.5">
-                    <span className="grid h-7 w-7 place-items-center rounded-full border border-teal-800/30 text-[10px] font-semibold text-teal-800/80">
+                    <span className="grid h-7 w-7 place-items-center rounded-full border border-teal-800/30 text-[14px] font-semibold text-teal-800/80">
                       {initials(t.name)}
                     </span>
-                    <div className="text-[12px] uppercase tracking-[0.2em] text-teal-800/55 sm:text-[14px] sm:tracking-[0.24em]">
+                    <div className="text-[16px] uppercase tracking-[0.2em] text-teal-800/55 sm:text-[18px] sm:tracking-[0.24em]">
                       Patient Voice
                     </div>
                   </div>
-                  <p className="text-[14px] leading-[1.65] text-teal-900/75 sm:text-[16px]">
+                  <p className="text-[18px] leading-[1.65] text-teal-900/75 sm:text-[20px]">
                     "{t.quote}"
                   </p>
-                  <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-teal-900/55">
+                  <div className="mt-3 text-[14px] uppercase tracking-[0.2em] text-teal-900/55">
                     — {t.name} · {t.role}
                   </div>
                 </div>
@@ -179,7 +179,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.9 }}
-            className="mx-auto h-44 w-44 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-60 lg:w-60 xl:h-80 xl:w-80"
+            className="mx-auto h-44 w-44 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-44 lg:w-44 xl:h-56 xl:w-56"
           >
             <img
               src="/logo.svg"
@@ -193,7 +193,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.9 }}
-            className="mx-auto -mt-6 max-w-[18rem] px-4 text-center font-display text-lg font-bold italic leading-snug text-teal-900 sm:-mt-8 sm:max-w-[20rem] sm:text-xl md:-mt-10 md:max-w-[22rem] md:text-[22px] lg:-mt-8 lg:max-w-[16rem] lg:text-[19px] xl:-mt-14 xl:max-w-[20rem] xl:text-2xl"
+            className="mx-auto -mt-6 max-w-[18rem] px-4 text-center font-display text-lg font-bold italic leading-snug text-teal-900 sm:-mt-8 sm:max-w-[20rem] sm:text-xl md:-mt-10 md:max-w-[22rem] md:text-[26px] lg:-mt-8 lg:max-w-[16rem] lg:text-[23px] xl:-mt-14 xl:max-w-[20rem] xl:text-2xl"
             style={{ textWrap: 'balance' }}
           >
             Compassionate, world-class cancer care
@@ -207,10 +207,10 @@ export default function Hero() {
           >
             <div className="mr-4 w-px self-stretch bg-teal-800/25 sm:mr-5" />
             <div className="space-y-3">
-              <p className="text-[13px] leading-relaxed text-teal-900/70 sm:text-[14px] lg:text-[13px]">
+              <p className="text-[17px] leading-relaxed text-teal-900/70 sm:text-[18px] lg:text-[17px]">
                 Aseem Amritam is a place of healing and hope.
               </p>
-              <p className="text-[13px] leading-relaxed text-teal-900/70 sm:text-[14px] lg:text-[13px]">
+              <p className="text-[17px] leading-relaxed text-teal-900/70 sm:text-[18px] lg:text-[17px]">
                 We are with you at every step of the journey.
               </p>
             </div>

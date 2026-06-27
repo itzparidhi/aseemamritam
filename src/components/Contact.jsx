@@ -71,7 +71,7 @@ export default function Contact() {
           />
           {/* Caption strip with directions CTA */}
           <div className="pointer-events-none absolute inset-x-3 bottom-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div className="glass pointer-events-auto inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-teal-900">
+            <div className="glass pointer-events-auto inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.18em] text-teal-900">
               <MapPin size={13} className="text-teal-700" />
               Aseem Amritam · Vaishali Nagar
             </div>
@@ -81,7 +81,7 @@ export default function Contact() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-teal-900 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-cream shadow-soft transition hover:bg-teal-950"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-teal-900 px-4 py-2 text-[15px] font-bold uppercase tracking-[0.18em] text-cream shadow-soft transition hover:bg-teal-950"
             >
               Open in Google Maps <ArrowUpRight size={13} />
             </a>
@@ -110,7 +110,7 @@ function LocationCard({ tag, name, address, hours, phone, highlight }) {
       )}
       <div className="relative">
         <span
-          className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${
+          className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[14px] font-bold uppercase tracking-widest ${
             highlight ? 'bg-cream/15 text-cream' : 'bg-teal-50 text-teal-800'
           }`}
         >

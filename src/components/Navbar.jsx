@@ -37,7 +37,7 @@ export default function Navbar() {
           scrolled ? 'h-0 opacity-0' : 'h-9 opacity-100'
         }`}
       >
-        <div className="container-x flex h-9 items-center justify-between text-[10.5px] uppercase tracking-[0.2em] text-teal-900/65">
+        <div className="container-x flex h-9 items-center justify-between text-[14.5px] uppercase tracking-[0.2em] text-teal-900/65">
           <div className="flex items-center gap-2">
             <Clock size={10} className="text-gold-500" />
             <span>Centre · Open 24 Hours</span>
@@ -65,10 +65,10 @@ export default function Navbar() {
             className="h-14 w-14 md:h-[68px] md:w-[68px] transition-transform duration-500 group-hover:rotate-[8deg]"
           />
           <div className="leading-tight">
-            <div className="font-display text-[21px] md:text-[24px] text-teal-950 tracking-tight">
+            <div className="font-display text-[25px] md:text-[28px] text-teal-950 tracking-tight">
               Aseem Amritam
             </div>
-            <div className="text-[10px] uppercase tracking-[0.26em] text-teal-700/65">
+            <div className="text-[14px] uppercase tracking-[0.26em] text-teal-700/65">
               Cancer Centre
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="group relative inline-block text-[11.5px] uppercase tracking-[0.2em] font-medium text-teal-900/70 transition hover:text-teal-950"
+                className="group relative inline-block text-[15.5px] uppercase tracking-[0.2em] font-medium text-teal-900/70 transition hover:text-teal-950"
               >
                 {l.label}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-teal-900 transition-all duration-300 group-hover:w-full" />
@@ -93,7 +93,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-teal-900 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream shadow-soft transition hover:bg-teal-950 hover:shadow-glow"
+            className="group inline-flex items-center gap-2 rounded-full bg-teal-900 px-5 py-2.5 text-[15px] font-semibold uppercase tracking-[0.18em] text-cream shadow-soft transition hover:bg-teal-950 hover:shadow-glow"
           >
             Book Appointment
             <ArrowUpRight

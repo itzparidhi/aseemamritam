@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-400">
+            <div className="text-[14px] font-bold uppercase tracking-[0.22em] text-gold-400">
               Stay connected
             </div>
             <p className="mt-3 max-w-md text-sm text-cream/65">
@@ -58,7 +58,7 @@ export default function Footer() {
               />
               <div>
                 <div className="font-display text-xl font-bold tracking-tight text-cream">Aseem Amritam</div>
-                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-cream/65">
+                <div className="text-[14px] font-bold uppercase tracking-[0.22em] text-cream/65">
                   Cancer Centre
                 </div>
               </div>
@@ -208,7 +208,7 @@ function NewsletterForm() {
 function Column({ heading, items }) {
   return (
     <div className="md:col-span-3 lg:col-span-2">
-      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-400">{heading}</div>
+      <div className="text-[14px] font-bold uppercase tracking-[0.22em] text-gold-400">{heading}</div>
       <ul className="mt-4 space-y-2 text-sm">
         {items.map((it, i) => {
           if (typeof it === 'string') {

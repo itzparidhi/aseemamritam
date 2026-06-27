@@ -50,7 +50,7 @@ export default function FloatingSidebar() {
             className="group relative grid h-14 w-14 place-items-center rounded-full text-teal-800 transition hover:bg-teal-50 hover:text-teal-950"
           >
             <Icon size={18} strokeWidth={1.5} />
-            <span className="mt-0.5 text-[8px] uppercase tracking-[0.18em] text-teal-900/70 group-hover:text-teal-950">
+            <span className="mt-0.5 text-[12px] uppercase tracking-[0.18em] text-teal-900/70 group-hover:text-teal-950">
               {label}
             </span>
           </a>

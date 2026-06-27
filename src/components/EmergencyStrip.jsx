@@ -3,7 +3,7 @@ import { Phone } from 'lucide-react'
 export default function EmergencyStrip() {
   return (
     <div className="absolute inset-x-0 bottom-0 z-10 bg-teal-950 text-cream">
-      <div className="container-x flex h-9 items-center justify-between text-[10.5px] uppercase tracking-[0.2em]">
+      <div className="container-x flex h-9 items-center justify-between text-[14.5px] uppercase tracking-[0.2em]">
         <a
           href="tel:+919257596655"
           className="inline-flex items-center gap-2 text-cream/90 transition hover:text-cream"

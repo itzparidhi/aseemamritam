@@ -103,12 +103,12 @@ export default function Testimonials() {
               >
                 <div className="flex items-start gap-3">
                   <div className="grid h-10 w-10 flex-none place-items-center rounded-full border border-peri-300 bg-gradient-to-br from-peri-100 to-peri-50">
-                    <span className="font-display text-[11px] font-bold text-peri-600">
+                    <span className="font-display text-[15px] font-bold text-peri-600">
                       0{nextIdx + 1}
                     </span>
                   </div>
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-peri-500">
+                    <div className="text-[14px] font-bold uppercase tracking-[0.18em] text-peri-500">
                       Up next
                     </div>
                     <p className="mt-1 line-clamp-2 text-xs font-semibold leading-relaxed text-navy-900/85">
@@ -147,13 +147,13 @@ export default function Testimonials() {
                     <h3 className="font-display text-lg font-bold leading-tight text-navy-950 sm:text-xl">
                       {t.title}
                     </h3>
-                    <div className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-peri-500">
+                    <div className="mt-1 text-[14px] font-bold uppercase tracking-[0.2em] text-peri-500">
                       {t.role}
                     </div>
                   </div>
 
                   {/* Body */}
-                  <p className="mx-auto mt-6 max-w-md text-center text-sm leading-[1.75] text-navy-800/80 sm:text-[15px]">
+                  <p className="mx-auto mt-6 max-w-md text-center text-sm leading-[1.75] text-navy-800/80 sm:text-[19px]">
                     {t.body}
                   </p>
 

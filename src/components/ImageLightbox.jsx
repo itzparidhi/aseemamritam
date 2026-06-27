@@ -193,7 +193,7 @@ export default function ImageLightbox({
 
           {/* Caption + dots */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-3 p-4 text-center text-cream/80 sm:p-6">
-            <div className="text-[13px] font-semibold sm:text-sm">{current.label}</div>
+            <div className="text-[17px] font-semibold sm:text-sm">{current.label}</div>
             <div className="pointer-events-auto flex items-center gap-1.5">
               {images.map((_, i) => (
                 <button
@@ -210,7 +210,7 @@ export default function ImageLightbox({
                 />
               ))}
             </div>
-            <div className="hidden text-[10px] font-bold uppercase tracking-[0.2em] text-cream/45 sm:block">
+            <div className="hidden text-[14px] font-bold uppercase tracking-[0.2em] text-cream/45 sm:block">
               Swipe / arrow keys to navigate · Double-tap to zoom
             </div>
           </div>

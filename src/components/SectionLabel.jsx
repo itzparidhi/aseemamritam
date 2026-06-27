@@ -19,7 +19,7 @@ export default function SectionLabel({ index, label, light = false }) {
         {label}
       </span>
       <span
-        className={`text-[11px] font-semibold tabular-nums tracking-[0.18em] ${
+        className={`text-[15px] font-semibold tabular-nums tracking-[0.18em] ${
           light ? 'text-cream/55' : 'text-teal-900/50'
         }`}
       >
